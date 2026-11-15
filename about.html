@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於本站 | KPOP 團體圖鑑</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KPOP 團體圖鑑</a>
+    <nav class="site-nav">
+      <a href="index.html">所有團體</a>
+      <a href="about.html" aria-current="page">關於本站</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <article class="prose">
+    <h1>關於本站</h1>
+    <p>「KPOP 團體圖鑑」是一個給新粉絲的入坑指南。這個網站不是一頁一頁手工排版出來的，而是先寫好一份規則文件 <code>CLAUDE.md</code>，再讓 AI 依照規則產生每一個團體頁。所以每一頁的結構、配色方式、資料格式都一樣，之後要加新的團也很快。</p>
+
+    <h2>每一頁都長一樣：9 個固定區塊</h2>
+    <ol class="steps">
+      <li><strong>Hero</strong>：團名與一句話介紹，背景是該團主色的「螢光棒光暈」</li>
+      <li><strong>基本資料</strong>：出道日、經紀公司、粉絲名、人數、類型、出道曲</li>
+      <li><strong>成員</strong>：藝名、本名與一個角色標籤</li>
+      <li><strong>團體故事</strong>：組成背景與重要轉折</li>
+      <li><strong>代表作時間軸</strong>：5–8 首，由舊到新</li>
+      <li><strong>最新動態</strong>：標明「資料截至」日期</li>
+      <li><strong>入坑推薦</strong>：剛好 3 首</li>
+      <li><strong>小知識</strong>：可查證的趣事</li>
+      <li><strong>資料來源</strong>：所有引用連結</li>
+    </ol>
+
+    <h2>要新增一個團時，AI 會怎麼做？</h2>
+    <p>只要對 AI 說「新增 IVE」（在 Claude Code 中可以用 <code>/add-group IVE</code>），AI 讀完 <code>CLAUDE.md</code> 後會照這個流程：</p>
+    <pre>1. 上網查證出道日、公司、成員、近況
+2. 決定 slug（例如 Stray Kids → stray-kids）
+3. 複製 templates/group-template.html → groups/&lt;slug&gt;.html
+4. 依 9 個區塊規則填內容、設定主色
+5. 在 assets/js/groups-data.js 依出道日順序登錄
+6. 執行 node scripts/check.mjs 驗證
+7. git commit -m "feat(group): add IVE"</pre>
+    <p>首頁卡片、篩選按鈕、上一團／下一團導覽都是從 <code>groups-data.js</code> 自動產生的，所以新增一團只需要動兩個檔案。</p>
+
+    <h2>自動檢查</h2>
+    <p><code>scripts/check.mjs</code> 會檢查：每個登錄的團都有頁面、每個頁面都有登錄、9 個區塊順序正確、沒有殘留的 <code>TODO</code>、主色與資料一致、「資料截至」日期與 <code>updated</code> 一致、沒有使用圖片。AI 每次改完都要跑過這支腳本。</p>
+
+    <h2>內容原則</h2>
+    <ul class="list">
+      <li>不放偶像照片、專輯封面、團體 Logo、歌詞——用色彩和文字設計視覺</li>
+      <li>成員與近況這類會變動的資訊，一律先上網查證並標日期</li>
+      <li>不寫八卦與無來源的評價，語氣中立友善</li>
+    </ul>
+
+    <h2>原始碼</h2>
+    <p>完整專案與規則文件放在 GitHub：<a href="https://github.com/eathenweng-droid/kpop-group-guide" target="_blank" rel="noopener">eathenweng-droid/kpop-group-guide</a>。</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    KPOP 團體圖鑑・粉絲自製非官方介紹站・本站不使用偶像照片、Logo 與歌詞・依 <a href="about.html">CLAUDE.md 規則</a> 持續擴充
+  </div>
+</footer>
+
+<script src="assets/js/groups-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

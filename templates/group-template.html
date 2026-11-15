@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+  團體頁範本 — 新增團體時「複製這份」到 groups/<slug>.html
+  規則：CLAUDE.md 第 5 節（區塊）、第 6 節（命名）、第 8 節（內容）
+  完成後：所有 {{...}} 與 TODO 都要換掉，然後執行 node scripts/check.mjs
+-->
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{NAME}} | KPOP 團體圖鑑</title>
+  <meta name="description" content="{{NAME}} 團體介紹：成員、代表作、最新動態與入坑推薦。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-slug="{{SLUG}}" style="--accent:{{COLOR}}">
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html"><span class="brand-dot"></span>KPOP 團體圖鑑</a>
+    <nav class="site-nav">
+      <a href="../index.html">所有團體</a>
+      <a href="../about.html">關於本站</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 1. hero：英文團名 / 韓文・中文團名 / tagline（20 字內，與 groups-data.js 相同） -->
+  <section id="hero" class="hero-glow">
+    <h1>{{NAME}}</h1>
+    <p class="names">{{NAME_KO}}・{{NAME_ZH}}</p>
+    <p class="tagline">{{TAGLINE}}</p>
+  </section>
+
+  <nav class="toc" aria-label="本頁目錄">
+    <a href="#profile">基本資料</a><a href="#members">成員</a><a href="#story">團體故事</a>
+    <a href="#discography">代表作</a><a href="#latest">最新動態</a><a href="#starter">入坑推薦</a>
+    <a href="#trivia">小知識</a><a href="#sources">資料來源</a>
+  </nav>
+
+  <!-- 2. profile：固定 6 列 -->
+  <section id="profile" class="section">
+    <h2>基本資料</h2>
+    <table class="profile-table">
+      <tr><th>出道日</th><td>{{YYYY 年 M 月 D 日}}</td></tr>
+      <tr><th>經紀公司</th><td>{{AGENCY}}</td></tr>
+      <tr><th>粉絲名</th><td>{{FANDOM}}（{{粉絲名意義}}）</td></tr>
+      <tr><th>成員人數</th><td>{{N}} 人</td></tr>
+      <tr><th>類型</th><td>{{男團 / 女團}}</td></tr>
+      <tr><th>出道曲</th><td>{{DEBUT_SONG}}</td></tr>
+    </table>
+  </section>
+
+  <!-- 3. members：每人一個 li.member，依官方排序 -->
+  <section id="members" class="section">
+    <h2>成員</h2>
+    <ul class="members">
+      <li class="member"><strong>{{藝名}}</strong><span class="real">{{本名 / 譯名}}</span><br><span class="role">{{標籤}}</span></li>
+      <!-- TODO：每位成員複製一行 -->
+    </ul>
+  </section>
+
+  <!-- 4. story：2–4 段，每段 60–150 字 -->
+  <section id="story" class="section">
+    <h2>團體故事</h2>
+    <p>TODO：組成背景、團名意義。</p>
+    <p>TODO：重要轉折與里程碑。</p>
+  </section>
+
+  <!-- 5. discography：5–8 項，年份由舊到新 -->
+  <section id="discography" class="section">
+    <h2>代表作時間軸</h2>
+    <ol class="timeline">
+      <li><span class="year">{{YYYY}}</span><span class="work">{{作品名}}</span> — {{一句話說明}}</li>
+      <!-- TODO：共 5–8 項 -->
+    </ol>
+  </section>
+
+  <!-- 6. latest：第一行一定要「資料截至 YYYY-MM-DD」，與 groups-data.js 的 updated 相同 -->
+  <section id="latest" class="section">
+    <h2>最新動態</h2>
+    <span class="asof">資料截至 {{YYYY-MM-DD}}</span>
+    <ul class="list">
+      <li>TODO：有新聞來源的近況（3–5 點）</li>
+    </ul>
+  </section>
+
+  <!-- 7. starter：剛好 3 首 -->
+  <section id="starter" class="section">
+    <h2>入坑推薦</h2>
+    <ol class="starter">
+      <li><span class="song">{{歌名}}</span>（{{年份}}）<br>{{為什麼適合當第一首}}</li>
+      <li><span class="song">{{歌名}}</span>（{{年份}}）<br>{{為什麼適合當第一首}}</li>
+      <li><span class="song">{{歌名}}</span>（{{年份}}）<br>{{為什麼適合當第一首}}</li>
+    </ol>
+  </section>
+
+  <!-- 8. trivia：3–5 則可查證的事實 -->
+  <section id="trivia" class="section">
+    <h2>小知識</h2>
+    <ul class="list">
+      <li>TODO</li>
+    </ul>
+  </section>
+
+  <!-- 9. sources：至少 2 個，至少 1 個新聞或官方來源 -->
+  <section id="sources" class="section sources">
+    <h2>資料來源</h2>
+    <ol>
+      <li><a href="https://example.com" target="_blank" rel="noopener">TODO：來源名稱</a></li>
+    </ol>
+  </section>
+
+  <!-- 上一團 / 下一團：由 main.js 自動產生，不要手寫內容 -->
+  <nav class="pager" data-slug="{{SLUG}}"></nav>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    KPOP 團體圖鑑・粉絲自製非官方介紹站・本站不使用偶像照片、Logo 與歌詞・依 <a href="../about.html">CLAUDE.md 規則</a> 持續擴充
+  </div>
+</footer>
+
+<script src="../assets/js/groups-data.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

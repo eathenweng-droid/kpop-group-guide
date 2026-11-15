@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPOP 團體圖鑑</title>
+  <meta name="description" content="給新粉絲的 KPOP 團體入坑指南：每團一頁，成員、代表作、最新動態與入坑推薦。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KPOP 團體圖鑑</a>
+    <nav class="site-nav">
+      <a href="index.html" aria-current="page">所有團體</a>
+      <a href="about.html">關於本站</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="home-hero">
+    <h1 class="en"><span>KPOP</span> Group Guide</h1>
+    <p>剛入坑不知道從哪裡開始？這裡每個團都有一頁：基本資料、成員、代表作、最新動態，還有三首「入坑第一首」推薦。目前收錄 <strong id="group-count">0</strong> 團。</p>
+  </section>
+
+  <div class="filters" role="group" aria-label="篩選">
+    <span class="filter-label">類型</span>
+    <button class="chip" data-type="all" aria-pressed="true">全部</button>
+    <button class="chip" data-type="boy" aria-pressed="false">男團</button>
+    <button class="chip" data-type="girl" aria-pressed="false">女團</button>
+  </div>
+  <div class="filters" id="agency-filters" role="group" aria-label="經紀公司篩選"></div>
+
+  <div class="grid" id="group-grid"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    KPOP 團體圖鑑・粉絲自製非官方介紹站・本站不使用偶像照片、Logo 與歌詞・依 <a href="about.html">CLAUDE.md 規則</a> 持續擴充
+  </div>
+</footer>
+
+<script src="assets/js/groups-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
